@@ -1,0 +1,45 @@
+# This is an example story to demonstrate what a stori file looks like.
+# These lines are comments that will be deleted in pre-processing.
+
+Chapter 1 Wings # this is a chapter. Chapters must have an id and some string name.
+	# scenes must be spaced with one tab
+	You sprout wings and gain the ability to fly. # this scene has options and no target id
+		# these options must be spaced with two tabs to the right
+		Boast about wings. # if an option doesn't have a target id, the target will be determined by the scene (in this case it's 0 (or none) which just goes to the next scene in order)
+		Fly to Paris. 1 # the number after the option has to be seperated by one space and is the target id for the scene it goes to.
+	
+	You call up your arch-nemesis Tim and tell him all about your amazing new wings. # this scene has no options, no id, and no target id. This format allows you to just write.
+	He knows his place now as an inferior human sans wings. Now what do you do with this gift?
+		conseq: inferiorTim # this is a consequence of your actions. You can refer to this later with the 'prereq' attribute. Maybe Tim will be pissed in a later scene.
+	On your desk lies a retour ticket to Paris and back. You've always wanted to see the Eiffel tower.
+		Just go by plane. # option target id = 0, scene target id = 0, so just go to the scene below.
+		Yeet the ticket; I can fly! 1 # here you see how you can reference the same scene in two different places, so your story feels more dynamic and storylines can flow in and out of each other.
+	
+	You take the ticket and head to the <BA>Barrenger Airport</BA>. You get strange looks from people. # this scene has a tag in it. You can use these tags to define rich text color or font tags in the compiler.
+	Generally people are too busy to really care. The airplane does not accomodate winged humans, though.
+	They serve you a crappy chicken sandwich at 32K feet. 3
+	
+	1 Your airline ticket receives a one-way trip to the trashcan.
+	
+	Without hesitation, you go to the balcony and take off into the fresh air.
+		Do a flip.
+		Fly straight. 2
+	You do a sick flip in the air. From below you hear people clapping.
+		conseq: flip # another consequence
+	By the sound of applause you fly to Paris. 3
+	2 It is inefficient to do funky tricks. You decide it would be better to fly straight to Paris. # this scene has an id. It can be referenced by other scenes or options.
+	3 You fly off into the sunset.
+	At midnight, a customisation screen pops up in your face, allowing you to customize the color of your wings.
+		titanium white mode
+			set: wingMode=light # this is an option attribute with three tabs. It sets the variable wingMode to light.
+		onyx dark mode
+			set: wingMode=dark
+	You look over your shoulder at your velvet $wingMode$ wings. # use $$ to reference variables which will be replaced in the compiler. Also, look I can use my own tags in comments, cause they'll be removed first: <tag> conseq:.
+End # this function word ends the chapter.
+
+Chapter 2 Paris # A new chapter begins.
+	You arrive in Paris.
+	Tim is waiting for you there, axe in hand.
+		prereq: inferiorTim # if you pissed him off, you will have to face the conseq uences.
+	The END.
+End
